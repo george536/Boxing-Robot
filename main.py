@@ -1,15 +1,15 @@
-#from __future__ import division
+from __future__ import division
 from tkinter import *
 import sys as os
 import subprocess
 import tkinter as tk
 import time
-#import Adafruit_PCA9685
+import Adafruit_PCA9685
 from threading import Thread
 import random
 import tkinter.scrolledtext as st
 
-'''
+
 pwm = Adafruit_PCA9685.PCA9685()
 pwm.set_pwm_freq(50)
 lpulse=1960
@@ -31,7 +31,7 @@ def move_to_initial():
     time.sleep(0.05)
 move_to_initial()  
 
-'''
+
 #global variables
 
 choice=""
@@ -47,7 +47,7 @@ begin=False
 enterd_combination=""
 learning_combos=[]
 
-'''
+
 
 def servo():
     global lpulse
@@ -137,12 +137,12 @@ def servo():
             if not running:
                     move_to_initial()
                     break
-        '''        
+      
 
 # shutdown the rpi
 def shutdown():
     #shutdown the gui
-    #subprocess.Popen(['shutdown','-h','now'])
+    subprocess.Popen(['shutdown','-h','now'])
     master.destroy()
    
 
@@ -264,9 +264,9 @@ def start():
         start_button.place_forget()
         pause_button.place(x=370*2, y=235*2)
         if __name__ == '__main__':
-            #a=Thread(target=servo)
+            a=Thread(target=servo)
             b = Thread(target=update)
-            #a.start()
+            a.start()
             b.start()
 
 def pause():
@@ -300,7 +300,7 @@ def reset():
     seconds = 0
     # set label back to zero
     page4.stopwatch_label.config(text="00:00")
-    #move_to_initial()
+    move_to_initial()
 
 def one_clicked():
     global enterd_combination
